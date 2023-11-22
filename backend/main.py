@@ -1,13 +1,15 @@
 from typing import Union
 from fastapi import FastAPI
+from movies import my_movies, Movie
 
 app = FastAPI()
 
-#Process the get request for "/"
-@app.get("/")
-def read_root():
-	return {"Hello": "World"} 
+print(my_movies)
+@app.get("/movies/{movie_id}")
+def get_movie_by_id(movie_id: str) -> Union[Movie,None]:
+	if movie_id in my_movies:
+		movie = my_movies[movie_id]
+		if movie.id == movie_id:
+			return movie
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-	return {"item_id": item_id, "q":q} 
+	return None
