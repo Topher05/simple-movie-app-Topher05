@@ -1,6 +1,6 @@
 from typing import Union
 from fastapi import FastAPI
-from movies import my_movies, Movie, MovieNew, MovieUpdate
+from movies import my_movies, Movie, MovieNew, MovieUpdate, MaxId, my_max_id
 
 app = FastAPI()
 
@@ -37,3 +37,16 @@ def delete_movie(movie_id: str) ->Union[Movie,None]:
 			return movie
 
 	return None
+
+@app.post("/movies/add")
+def add_movie(new_movie: MovieNew) -> Union[Movie, None]:
+	new_id = my_max_id.get_max_id() + 1
+	print(new_id)
+	my_new_movie= Movie(
+		id = str(new_id),
+		name = new_movie.name,
+		cast = new_movie.cast
+	)
+	my_movies[my_new_movie.id] = my_new_movie
+	my_max_id.set_max_id(str(new_id))
+	return my_movies[str(new_id)]
