@@ -6,6 +6,10 @@ class MovieNew(BaseModel):
 	name: str
 	cast: Set[str]
 
+class MovieUpdate(BaseModel):
+      name: str
+      cast: Set[str]
+
 class Movie(BaseModel):
 	id: str
 	name: str
