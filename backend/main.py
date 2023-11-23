@@ -28,3 +28,12 @@ def update_movie(movie_id: str, update_movie: MovieUpdate) -> Union[Movie,None]:
 			return my_movies[movie_id]
 	return None
 
+@app.delete("/movies/{movie_id}")
+def delete_movie(movie_id: str) ->Union[Movie,None]:
+	if movie_id in my_movies:
+		movie = my_movies[movie_id]
+		if movie.id == movie_id:
+			del my_movies[movie_id]
+			return movie
+
+	return None
