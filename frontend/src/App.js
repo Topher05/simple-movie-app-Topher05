@@ -8,16 +8,16 @@ function App() {
   const [movie, setMovie] = useState(null)
 
   useEffect(() => {
-    // if (movieId === ""){
-    //   setMovie(null);
-    // } else {
-    //   fetch (`http://localhost:8000/movies/${movieId}`)
-    //   .then( result => result.json() )
-    //   .then(result => {
-    //     console.log(`http://localhost:8000/movies/${movieId}`)
-    //     setMovie(result);
-    //   });
-    // }
+    if (movieId == ""){
+      setMovie(null);
+    } else {
+      fetch (`http://localhost:8000/movies/${movieId}`)
+      .then( result => result.json() )
+      .then(result => {
+        console.log(`http://localhost:8000/movies/${movieId}`)
+        setMovie(result);
+      });
+    }
     console.log(movieId);
   }, [movieId]);
 
@@ -31,7 +31,7 @@ function App() {
         <TextField id="outlined-basic" label="Movie ID" variant="outlined"
           color="warning" focused value={movieId}
           onChange={e => setMovieId(e.target.value)}/>
-        {/* <List>
+        <List>
           { movie && 
           <ListItem>
             <ListItemIcon>
@@ -39,7 +39,7 @@ function App() {
             </ListItemIcon>
             <ListItemText primary={movie['movie_name']} />
           </ListItem>}
-        </List> */}
+        </List>
       </header>
     </div>
   );
