@@ -37,7 +37,7 @@ function App() {
             <ListItemIcon>
               <LocalMoviesIcon />
             </ListItemIcon>
-            <ListItemText primary={movie['movie_name']} />
+            <ListItemText primary={movie['name']} />
           </ListItem>}
         </List>
       </header>
